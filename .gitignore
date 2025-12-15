@@ -1,0 +1,8 @@
+.venv
+*.DS_Store
+*.csv
+*.npz
+*.json
+*.png
+*.jpg
+*.jpeg
