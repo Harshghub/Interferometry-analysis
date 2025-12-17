@@ -3,10 +3,11 @@ name = "TrapTester"
 description = "bla"
 version = "0.1.0"
 authors = ["Michael Marti <micmarti@ethz.ch>"]
-packages = [{ include = "trap_tester", from = "src" }]
+#packages = [{ include = "trap_tester", from = "src" }]
+package-mode = false
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.12"
 numpy = "^2.1"
 scipy = "^1.14"
 matplotlib ="^3.9"
