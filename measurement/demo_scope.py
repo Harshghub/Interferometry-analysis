@@ -3,7 +3,7 @@ import dwfpy as dwf
 import numpy as np
 import json
 from pathlib import Path
-from trap_tester.utils import R_SENSE, SENSE_MAG
+# from trap_tester.utils import R_SENSE, SENSE_MAG
 
 """-----------------------------------------------------------------------"""
 
