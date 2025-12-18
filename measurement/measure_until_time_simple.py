@@ -1,5 +1,5 @@
 """
-Simple loop: keep taking measurements until a target end time.
+Can be deleted once measurement_with_log.py is working.
 
 Usage:
     python measure_until_time_simple.py --end "2025-12-11 15:30:00"
