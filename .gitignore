@@ -2,7 +2,8 @@
 *.DS_Store
 *.csv
 *.npz
-*.json
+results/
 *.png
 *.jpg
 *.jpeg
+poetry.lock
