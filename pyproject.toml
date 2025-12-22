@@ -17,6 +17,7 @@ dwfpy="^1.2.0"
 pillow="^12.0.0"
 ipynb = "^0.5.1"
 ipympl = "^0.9.8"
+ipykernel = "^7.1.0"
 
 [build-system]
 requires = ["poetry-core"]
