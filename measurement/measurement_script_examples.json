@@ -1,0 +1,3 @@
+{
+    "simple_measurement": /home/tiqi/src/Interferometry-analysis/.venv/bin/python /home/tiqi/src/Interferometry-analysis/measurement/single_measurement.py --measurement_type "full_swing",
+}

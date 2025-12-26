@@ -1,0 +1,63 @@
+{
+  "2025-12-22 13:30:50": {
+    "start_time": "2025-12-22 13:30:50",
+    "measurement_type": "interferometry",
+    "description": "First long measurement after the finish of the isotope shift measurements",
+    "Success": false
+  },
+  "2025-12-22 14:09:55": {
+    "start_time": "2025-12-22 14:09:55",
+    "measurement_type": "interferometry",
+    "description": "First long measurement after the finish of the isotope shift measurements. Stopped working after 16:50",
+    "Success": false
+  },
+  "2025-12-22 18:42:57": {
+    "start_time": "2025-12-22 18:42:57",
+    "measurement_type": "full_swing",
+    "description": "First version of long full swing measurement",
+    "Success": false
+  },
+  "2025-12-23 18:20:16": {
+    "start_time": "2025-12-23 18:20:16",
+    "end_time": "2025-12-24 09:00:05",
+    "measurement_type": "interferometry",
+    "description": "Second interferometry measurement",
+    "total_captures": 6580
+  },
+  "2025-12-24 15:54:14": {
+    "start_time": "2025-12-24 15:54:14",
+    "measurement_type": "interferometry",
+    "description": "Third interferometry measurement",
+    "Success": false
+  },
+  "2025-12-24 19:16:51": {
+    "start_time": "2025-12-24 19:16:51",
+    "measurement_type": "interferometry",
+    "description": "Third interferometry measurement",
+    "Success": false
+  },
+  "2025-12-24 21:14:26": {
+    "start_time": "2025-12-24 21:14:26",
+    "measurement_type": "interferometry",
+    "description": "Third interferometry measurement",
+    "Success": false
+  },
+  "2025-12-24 23:44:11": {
+    "start_time": "2025-12-24 23:44:11",
+    "measurement_type": "interferometry",
+    "description": "Third interferometry measurement",
+    "Success": false
+  },
+  "2025-12-25 13:10:53": {
+    "start_time": "2025-12-25 13:10:53",
+    "measurement_type": "full_swing",
+    "description": "Long full_swing measurement",
+    "Success": false
+  },
+  "2025-12-26 00:11:42": {
+    "start_time": "2025-12-26 00:11:42",
+    "measurement_type": "full_swing",
+    "description": "Long full_swing measurement",
+    "Success": false
+  }
+}
