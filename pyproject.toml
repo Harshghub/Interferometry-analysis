@@ -18,6 +18,8 @@ pillow="^12.0.0"
 ipynb = "^0.5.1"
 ipympl = "^0.9.8"
 ipykernel = "^7.1.0"
+pyvisa = "^1.14"
+pyvisa-py = "^0.5"
 
 [build-system]
 requires = ["poetry-core"]
