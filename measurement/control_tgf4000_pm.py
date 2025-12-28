@@ -9,6 +9,7 @@ If commands fail, refer to the TGF4000 manual Section 25 (Remote Commands) for t
 
 Prerequisites:
     pip install pyvisa pyvisa-py
+    (pyserial is optional but recommended for listing COM ports on Windows)
 
 Usage:
     # First, list available devices to find the address:
@@ -57,15 +58,21 @@ def connect_to_device(interface: str, address: str, timeout: int = 5000) -> pyvi
     Returns:
         pyvisa.Resource: Connected device resource
     """
-    rm = pyvisa.ResourceManager()
+    # Use pyvisa-py backend for better COM port support, especially on Windows
+    try:
+        rm = pyvisa.ResourceManager('@py')
+    except Exception:
+        # Fallback to default backend
+        rm = pyvisa.ResourceManager()
     
     if interface.lower() == 'usb':
         # USB virtual COM port connection
         # Format: 'ASRL<port>::INSTR' for serial/USB
         # Handle different port formats
-        if address.startswith('COM'):
-            # Windows format: COM3 -> ASRL3::INSTR or ASRLCOM3::INSTR
-            port_num = address.replace('COM', '').replace('com', '')
+        if address.upper().startswith('COM'):
+            # Windows format: COM3 -> ASRL3::INSTR, COM10 -> ASRL10::INSTR
+            # Extract the port number (remove COM prefix, case-insensitive)
+            port_num = address[3:]
             resource_name = f"ASRL{port_num}::INSTR"
         elif address.startswith('/dev/'):
             # Linux format: /dev/ttyUSB0 -> ASRL/dev/ttyUSB0::INSTR
@@ -94,7 +101,10 @@ def connect_to_device(interface: str, address: str, timeout: int = 5000) -> pyvi
         print(f"1. Check that the device is powered on")
         print(f"2. For USB: Check the COM port/device path is correct")
         print(f"3. For LAN: Check the IP address and network connection")
-        print(f"4. List available resources with: python -c 'import pyvisa; rm=pyvisa.ResourceManager(); print(rm.list_resources())'")
+        print(f"4. List available devices with: python list_visa_devices.py")
+        if interface.lower() == 'usb' and sys.platform == 'win32':
+            print(f"5. On Windows, ensure pyvisa-py is installed: pip install pyvisa-py")
+            print(f"6. Check Device Manager to verify the COM port number")
         raise
 
 
@@ -114,7 +124,7 @@ def enable_phase_modulation(device: pyvisa.Resource, channel: int = 1) -> None:
     Enable phase modulation on the specified channel.
     
     Based on TGF4000 manual, the commands may vary. This function tries
-    common SCPI command formats.
+    common SCPI command formats and verifies the modulation status.
     
     Args:
         device: Connected device resource
@@ -140,6 +150,7 @@ def enable_phase_modulation(device: pyvisa.Resource, channel: int = 1) -> None:
             time.sleep(0.1)
             device.write(f"CH{channel}:MOD:STATE ON")
             time.sleep(0.1)
+            
             print("Phase modulation enabled (using CH format).")
         except Exception as e2:
             print(f"Warning: Could not enable PM with standard commands.")
@@ -147,6 +158,53 @@ def enable_phase_modulation(device: pyvisa.Resource, channel: int = 1) -> None:
             print(f"  CH format error: {e2}")
             print(f"  You may need to check the manual for exact command syntax.")
             raise
+    
+    # Query modulation status to verify it was enabled correctly
+    time.sleep(0.2)  # Give device time to process
+    print("\nVerifying modulation status...")
+    
+    try:
+        # Query modulation state
+        state_cmds = [f"SOUR{channel}:MOD:STATE?", f"CH{channel}:MOD:STATE?"]
+        mod_state = None
+        for cmd in state_cmds:
+            try:
+                state = device.query(cmd)
+                mod_state = state.strip().upper()
+                break
+            except:
+                continue
+        
+        # Query modulation type
+        mod_type_cmds = [f"SOUR{channel}:MOD:TYPE?", f"CH{channel}:MODE?", f"CH{channel}:MOD:TYPE?"]
+        mod_type = None
+        for cmd in mod_type_cmds:
+            try:
+                mod_type = device.query(cmd)
+                mod_type = mod_type.strip().upper()
+                break
+            except:
+                continue
+        
+        # Display status
+        if mod_state:
+            is_enabled = mod_state in ['ON', '1', 'TRUE']
+            status_str = "ON" if is_enabled else "OFF"
+            print(f"  Modulation state: {status_str}")
+            if not is_enabled:
+                print(f"  Warning: Modulation state is {mod_state}, expected ON")
+        else:
+            print(f"  Warning: Could not query modulation state")
+        
+        if mod_type:
+            print(f"  Modulation type: {mod_type}")
+            if mod_type != "PM":
+                print(f"  Warning: Modulation type is {mod_type}, expected PM")
+        else:
+            print(f"  Warning: Could not query modulation type")
+            
+    except Exception as e:
+        print(f"  Warning: Could not verify modulation status: {e}")
 
 
 def get_modulation_frequency(device: pyvisa.Resource, channel: int = 1) -> float:
