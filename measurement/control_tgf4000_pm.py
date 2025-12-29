@@ -94,6 +94,7 @@ def connect_to_device(interface: str, address: str, timeout: int = 5000) -> pyvi
         # Configure for SCPI communication
         device.write_termination = '\n'
         device.read_termination = '\n'
+        print(f"Device connected: {device}")
         return device
     except pyvisa.errors.VisaIOError as e:
         print(f"Error connecting to device: {e}")

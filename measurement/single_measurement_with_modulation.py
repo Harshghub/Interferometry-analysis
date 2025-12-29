@@ -11,21 +11,22 @@ import dwfpy as dwf
 import numpy as np
 import json
 from pathlib import Path
-
-address = 'COM3'
+import sys
+# address = 'COM3'
+address = '/dev/ttyACM0'
 timeout = 5000
 import pyvisa
 rm = pyvisa.ResourceManager('@py')
 
 
-port_num = address[3:]
+port_num = address#[3:]
 resource_name = f"ASRL{port_num}::INSTR"
 # from trap_tester.utils import R_SENSE, SENSE_MAG
 
 """-----------------------------------------------------------------------"""
 
 # Measurement settings
-f_sample = 1e2  # Sample rate in Hz
+f_sample = 1e3  # Sample rate in Hz
 measurement_duration = 8.0  # Duration in seconds
 buffer_size = int(measurement_duration * f_sample)  # Calculate buffer_size from duration
 
@@ -62,11 +63,14 @@ def set_modulation(measurement_type: str) -> None:
         print(f"Device identified: {idn.strip()}")
         device.write("CHN 1")
         device.write(f"MOD {modulation}")
-        print(f"Modulation set to: {modulation}")
+        # t.sleep(0.5)
+        # device.write(f"MODPMFREQ {1}")
+        # print(f"Modulation set to: {modulation}")
         t.sleep(0.5)
         device.close()
     except Exception as e:
         print(f"Error setting modulation: {e}")
+        sys.exit(1)
 
 
 def main() -> None:

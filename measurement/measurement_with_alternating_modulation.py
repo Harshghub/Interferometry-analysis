@@ -76,6 +76,7 @@ Examples:
     # If config file is provided, load arguments from it
     if args.config:
         config_path = Path(__file__).parent / args.config
+        print(config_path)
         if not config_path.exists():
             parser.error(f"Config file not found: {args.config}")
         
@@ -117,16 +118,17 @@ def main() -> None:
     log_data[start_time_str] = log_entry
     save_log(log_data)
 
-
+    capture_idx = 0
     while dt.datetime.now() <= end_dt:
         # Timestamp for filenames and logs
-        ans = subprocess.call([r"C:\Users\hupad\Desktop\Interferometry-analysis\.venv\Scripts\python.exe",r"C:\Users\hupad\Desktop\Interferometry-analysis\measurement\single_measurement_with_modulation.py","--measurement_type","full_swing"])
+        print(f"[{capture_idx}] Capture {capture_idx} starting")
+        ans = subprocess.call([r"/home/tiqi/src/Interferometry-analysis/.venv/bin/python",r"/home/tiqi/src/Interferometry-analysis/measurement/single_measurement_with_modulation.py","--measurement_type","full_swing"])
         if ans == 0:
             print("full_swing measurement command executed.")
         else:
             print("full_swing measurement command failed.")
         
-        ans = subprocess.call([r"C:\Users\hupad\Desktop\Interferometry-analysis\.venv\Scripts\python.exe",r"C:\Users\hupad\Desktop\Interferometry-analysis\measurement\single_measurement_with_modulation.py","--measurement_type","interferometry"])
+        ans = subprocess.call([r"/home/tiqi/src/Interferometry-analysis/.venv/bin/python",r"/home/tiqi/src/Interferometry-analysis/measurement/single_measurement_with_modulation.py","--measurement_type","interferometry"])
         if ans == 0:
             print("full_swing measurement command executed.")
         else:

@@ -59,5 +59,59 @@
     "measurement_type": "full_swing",
     "description": "Long full_swing measurement",
     "Success": false
+  },
+  "2025-12-29 11:38:26": {
+    "start_time": "2025-12-29 11:38:26",
+    "measurement_type": "alternating_modulation",
+    "description": "first alternating modulation measurement",
+    "Success": false
+  },
+  "2025-12-29 11:39:28": {
+    "start_time": "2025-12-29 11:39:28",
+    "end_time": "2025-12-29 11:41:01",
+    "measurement_type": "alternating_modulation",
+    "description": "first alternating modulation measurement",
+    "total_captures": 5
+  },
+  "2025-12-29 11:55:01": {
+    "start_time": "2025-12-29 11:55:01",
+    "end_time": "2025-12-29 11:59:05",
+    "measurement_type": "alternating_modulation",
+    "description": "first alternating modulation measurement",
+    "total_captures": 13
+  },
+  "2025-12-29 12:13:12": {
+    "start_time": "2025-12-29 12:13:12",
+    "end_time": "2025-12-29 12:14:08",
+    "measurement_type": "alternating_modulation",
+    "description": "first alternating modulation measurement",
+    "total_captures": 3
+  },
+  "2025-12-29 12:14:09": {
+    "start_time": "2025-12-29 12:14:09",
+    "end_time": "2025-12-29 12:16:01",
+    "measurement_type": "interferometry",
+    "description": "first alternating modulation measurement",
+    "total_captures": 14
+  },
+  "2025-12-29 12:20:46": {
+    "start_time": "2025-12-29 12:20:46",
+    "end_time": "2025-12-29 12:51:12",
+    "measurement_type": "alternating_modulation",
+    "description": "testing stability of alternating modulation measurement",
+    "total_captures": 98
+  },
+  "2025-12-29 12:51:12": {
+    "start_time": "2025-12-29 12:51:12",
+    "end_time": "2025-12-29 13:21:02",
+    "measurement_type": "interferometry",
+    "description": "testing stability with interferometry measurement",
+    "total_captures": 223
+  },
+  "2025-12-29 15:11:03": {
+    "start_time": "2025-12-29 15:11:03",
+    "measurement_type": "alternating_modulation",
+    "description": "first long alternating modulation measurement",
+    "Success": false
   }
 }
