@@ -26,9 +26,9 @@ resource_name = f"ASRL{port_num}::INSTR"
 """-----------------------------------------------------------------------"""
 
 # Measurement settings
-f_sample = 1e3  # Sample rate in Hz
-measurement_duration = 8.0  # Duration in seconds
-buffer_size = int(measurement_duration * f_sample)  # Calculate buffer_size from duration
+f_sample = 1e5  # Sample rate in Hz
+measurement_duration = 0.05  # Duration in seconds
+buffer_size = int(measurement_duration * f_sample) + 1 # Calculate buffer_size from duration
 
 # Scope channel settings
 CHANNEL_RANGE = 0.5  # Volts (±5V range)
@@ -64,7 +64,7 @@ def set_modulation(measurement_type: str) -> None:
         device.write("CHN 1")
         device.write(f"MOD {modulation}")
         # t.sleep(0.5)
-        # device.write(f"MODPMFREQ {1}")
+        # device.write(f"MODPMFREQ {500}")
         # print(f"Modulation set to: {modulation}")
         t.sleep(0.5)
         device.close()
@@ -80,7 +80,8 @@ def main() -> None:
 
     set_modulation(measurement_type)
 
-    with dwf.Device() as device:
+    with dwf.Device(configuration = "scope") as device:
+        print(device.configuration)
         # Initialize scope
         scope = device.analog_input
         scope[0].setup(range=CHANNEL_RANGE)

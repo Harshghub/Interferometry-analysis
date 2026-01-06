@@ -110,8 +110,102 @@
   },
   "2025-12-29 15:11:03": {
     "start_time": "2025-12-29 15:11:03",
+    "end_time": "2025-12-29 19:00:13",
     "measurement_type": "alternating_modulation",
     "description": "first long alternating modulation measurement",
+    "total_captures": 737
+  },
+  "2025-12-29 23:39:14": {
+    "start_time": "2025-12-29 23:39:14",
+    "end_time": "2025-12-30 09:00:08",
+    "measurement_type": "alternating_modulation",
+    "description": "second long alternating modulation measurement",
+    "total_captures": 1806
+  },
+  "2026-01-02 14:06:27": {
+    "start_time": "2026-01-02 14:06:27",
+    "measurement_type": "interferometry",
+    "description": "long old style interferometry measurement for checking defects in the measurement technique",
+    "Success": false
+  },
+  "2026-01-02 16:51:12": {
+    "start_time": "2026-01-02 16:51:12",
+    "measurement_type": "alternating_modulation",
+    "description": "third long alternating modulation measurement for checking defects in the measurement technique",
+    "Success": false
+  },
+  "2026-01-02 17:06:13": {
+    "start_time": "2026-01-02 17:06:13",
+    "measurement_type": "interferometry",
+    "description": "long old style interferometry measurement for checking defects in the measurement technique",
+    "Success": false
+  },
+  "2026-01-05 14:59:02": {
+    "start_time": "2026-01-05 14:59:02",
+    "measurement_type": "alternating_modulation",
+    "description": "Alternating modulation measurement with half a second of measurement duration",
+    "Success": false
+  },
+  "2026-01-05 15:04:00": {
+    "start_time": "2026-01-05 15:04:00",
+    "measurement_type": "alternating_modulation",
+    "description": "Alternating modulation measurement with half a second of measurement duration",
+    "Success": false
+  },
+  "2026-01-05 15:08:05": {
+    "start_time": "2026-01-05 15:08:05",
+    "measurement_type": "alternating_modulation",
+    "description": "Alternating modulation measurement with half a second of measurement duration",
+    "Success": false
+  },
+  "2026-01-05 15:22:51": {
+    "start_time": "2026-01-05 15:22:51",
+    "measurement_type": "alternating_modulation",
+    "description": "Alternating modulation measurement with half a second of measurement duration",
+    "Success": false
+  },
+  "2026-01-05 15:28:36": {
+    "start_time": "2026-01-05 15:28:36",
+    "measurement_type": "alternating_modulation",
+    "description": "Alternating modulation measurement with half a second of measurement duration",
+    "Success": false
+  },
+  "2026-01-05 15:33:56": {
+    "start_time": "2026-01-05 15:33:56",
+    "end_time": "2026-01-05 16:30:02",
+    "measurement_type": "alternating_modulation",
+    "description": "Alternating modulation measurement with half a second of measurement duration",
+    "total_captures": 1231
+  },
+  "2026-01-05 19:06:36": {
+    "start_time": "2026-01-05 19:06:36",
+    "measurement_type": "interferometry",
+    "description": "long old style interferometry measurement for checking defects in the measurement technique. This data is useless because the phase ramping was on at 500 Hz, and the sampling rate was 1000 Hz.",
+    "Success": false
+  },
+  "2026-01-05 19:06:38": {
+    "start_time": "2026-01-05 19:06:38",
+    "measurement_type": "alternating_modulation",
+    "description": "Alternating modulation measurement with half a second of measurement duration. This data is useless because the phase ramping was on at 500 Hz, and the sampling rate was 1000 Hz.",
+    "Success": false
+  },
+  "2026-01-05 19:07:10": {
+    "start_time": "2026-01-05 19:07:10",
+    "measurement_type": "interferometry",
+    "description": "long old style interferometry measurement for checking defects in the measurement technique. This data is useless because the phase ramping was on at 500 Hz, and the sampling rate was 1000 Hz.",
+    "Success": false
+  },
+  "2026-01-05 23:10:29": {
+    "start_time": "2026-01-05 23:10:29",
+    "end_time": "2026-01-05 23:59:02",
+    "measurement_type": "interferometry",
+    "description": "long old style interferometry measurement for checking defects in the measurement technique. This data is useless because the phase ramping was on at 500 Hz, and the sampling rate was 1000 Hz.",
+    "total_captures": 363
+  },
+  "2026-01-05 23:59:02": {
+    "start_time": "2026-01-05 23:59:02",
+    "measurement_type": "alternating_modulation",
+    "description": "Alternating modulation measurement with half a second of measurement duration",
     "Success": false
   }
 }
