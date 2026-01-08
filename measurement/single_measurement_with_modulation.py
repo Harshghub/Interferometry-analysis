@@ -66,7 +66,7 @@ def set_modulation(measurement_type: str) -> None:
         # t.sleep(0.5)
         # device.write(f"MODPMFREQ {500}")
         # print(f"Modulation set to: {modulation}")
-        t.sleep(0.5)
+        # t.sleep(0.5)
         device.close()
     except Exception as e:
         print(f"Error setting modulation: {e}")
