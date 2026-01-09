@@ -26,8 +26,8 @@ resource_name = f"ASRL{port_num}::INSTR"
 """-----------------------------------------------------------------------"""
 
 # Measurement settings
-f_sample = 1e5  # Sample rate in Hz
-measurement_duration = 0.05  # Duration in seconds
+f_sample = 1e7  # Sample rate in Hz
+measurement_duration = 0.001  # Duration in seconds
 buffer_size = int(measurement_duration * f_sample) + 1 # Calculate buffer_size from duration
 
 # Scope channel settings
@@ -63,10 +63,12 @@ def set_modulation(measurement_type: str) -> None:
         print(f"Device identified: {idn.strip()}")
         device.write("CHN 1")
         device.write(f"MOD {modulation}")
-        # t.sleep(0.5)
-        # device.write(f"MODPMFREQ {500}")
-        # print(f"Modulation set to: {modulation}")
-        # t.sleep(0.5)
+        t.sleep(0.5)
+        device.write(f"MODPMSHAPE RAMPUP")
+        t.sleep(0.5)
+        device.write(f"MODPMFREQ {100e3}")
+        print(f"Modulation set to: {modulation}")
+        t.sleep(0.5)
         device.close()
     except Exception as e:
         print(f"Error setting modulation: {e}")

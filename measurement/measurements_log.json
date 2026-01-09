@@ -220,5 +220,33 @@
     "measurement_type": "alternating_modulation",
     "description": "Trying out measurement without letting the device sleep",
     "total_captures": 27363
+  },
+  "2026-01-08 18:49:04": {
+    "start_time": "2026-01-08 18:49:04",
+    "end_time": "2026-01-08 18:49:04",
+    "measurement_type": "LO interferometry",
+    "description": "Trying out measurement without letting the device sleep",
+    "total_captures": 0
+  },
+  "2026-01-08 18:49:18": {
+    "start_time": "2026-01-08 18:49:18",
+    "end_time": "2026-01-08 18:50:00",
+    "measurement_type": "LO interferometry",
+    "description": "Trying out measurement without letting the device sleep",
+    "total_captures": 43
+  },
+  "2026-01-08 18:55:48": {
+    "start_time": "2026-01-08 18:55:48",
+    "end_time": "2026-01-08 18:58:00",
+    "measurement_type": "LO interferometry",
+    "description": "Trying out measurement without letting the device sleep",
+    "total_captures": 154
+  },
+  "2026-01-08 19:07:37": {
+    "start_time": "2026-01-08 19:07:37",
+    "end_time": "2026-01-08 19:07:37",
+    "measurement_type": "LO interferometry",
+    "description": "Trying out measurement without letting the device sleep",
+    "total_captures": 0
   }
 }

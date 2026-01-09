@@ -16,8 +16,8 @@ from pathlib import Path
 """-----------------------------------------------------------------------"""
 
 # Measurement settings
-f_sample = 1e3  # Sample rate in Hz
-measurement_duration = 8.0  # Duration in seconds
+f_sample = 1e7  # Sample rate in Hz
+measurement_duration = 1e-3  # Duration in seconds
 buffer_size = int(measurement_duration * f_sample)  # Calculate buffer_size from duration
 
 # Scope channel settings

@@ -6,8 +6,8 @@ import subprocess
 # else:
 #     print("measurement with config2.json Command failed.")
 
-ans = subprocess.call([r"/home/tiqi/src/Interferometry-analysis/.venv/bin/python",r"/home/tiqi/src/Interferometry-analysis/measurement/measurement_with_alternating_modulation.py","--config","config.json"])
+ans = subprocess.call([r"/home/tiqi/src/Interferometry-analysis/.venv/bin/python",r"/home/tiqi/src/Interferometry-analysis/measurement/measurement_lo.py","--config","config_lo.json"])
 if ans == 0:
-    print("alternating modulation measurement with config.json Command executed.")
+    print("LO measurement with config.json Command executed.")
 else:
-    print("alternating modulation measurement with config.json Command failed.")
+    print("LO measurement with config.json Command failed.")
