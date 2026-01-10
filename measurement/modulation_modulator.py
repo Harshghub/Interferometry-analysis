@@ -1,4 +1,4 @@
-address = 'COM3'
+address = '/dev/ttyACM0'
 timeout = 5000
 import argparse
 import sys
@@ -6,7 +6,7 @@ import time
 import pyvisa
 rm = pyvisa.ResourceManager('@py')
 
-port_num = address[3:]
+port_num = address[:]
 resource_name = f"ASRL{port_num}::INSTR"
 
 def arguments():
@@ -37,5 +37,7 @@ if __name__ == "__main__":
     set_modulation = "PM" if args.modulation == "on" else "OFF"
     device.write("CHN 1")
     device.write(f"MOD {set_modulation}")
+    device.write(f"MODPMSHAPE RAMPUP")
+    device.write(f"MODPMFREQ {10e3}")
 
     device.close()
