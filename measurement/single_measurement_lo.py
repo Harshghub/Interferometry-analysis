@@ -25,7 +25,7 @@ CHANNEL_RANGE = 0.5  # Volts (±5V range)
 CHANNEL_RANGE_COSINE = 1  # Volts (±5V range)
 
 # Analog output settings
-OUTPUT_FREQUENCY = 10e3# 1 kHz modulation frequency
+OUTPUT_FREQUENCY = 1e6# 1 kHz modulation frequency
 OUTPUT_AMPLITUDE = 1.0  # 1 Vpp (peak-to-peak)
 
 # Results directory
@@ -107,7 +107,8 @@ def main() -> None:
             "channel_range_v": float(CHANNEL_RANGE),
             "time_s": time_array.tolist(),  # Time array in seconds (relative to trigger)
             "voltage_data_v": v_meas.tolist(),  # Convert numpy array to list for JSON
-            "cosine_reference_v": cosine_reference.tolist()
+            "cosine_reference_v": cosine_reference.tolist(),
+            "modulation_frequency_hz": float(OUTPUT_FREQUENCY)
         }
         
         # Save to JSON file
