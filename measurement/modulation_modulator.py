@@ -18,7 +18,7 @@ def arguments():
         
     parser.add_argument(
         "--modulation",
-        required=True,
+        required=False,
         choices=['on', 'off'],
         help="Connection interface: 'usb' for virtual COM port or 'lan' for Ethernet"
     )
@@ -29,6 +29,8 @@ def arguments():
 
 if __name__ == "__main__":
     args = arguments()
+    if args.modulation is None:
+        args.modulation = "on"
 
     device = rm.open_resource(resource_name, timeout=timeout)
     idn = device.query("*IDN?")
@@ -38,6 +40,12 @@ if __name__ == "__main__":
     device.write("CHN 1")
     device.write(f"MOD {set_modulation}")
     device.write(f"MODPMSHAPE RAMPUP")
-    device.write(f"MODPMFREQ {10e3}")
+    device.write(f"MODPMFREQ {100e3}")
+    device.write(f"AMPL {1}")
+    device.write("CHN 2")
+    device.write(f"AMPL {1}")
 
+    clock_source = device.query(f"CLKSRC?")
+    print(f"Clock source: {clock_source.strip()}")
+    device.write(f"CLKSRC EXT")
     device.close()

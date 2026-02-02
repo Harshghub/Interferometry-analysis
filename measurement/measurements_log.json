@@ -248,5 +248,23 @@
     "measurement_type": "LO interferometry",
     "description": "Trying out measurement without letting the device sleep",
     "total_captures": 0
+  },
+  "2026-01-10 11:51:49": {
+    "start_time": "2026-01-10 11:51:49",
+    "measurement_type": "LO interferometry",
+    "description": "Trying out measurement without letting the device sleep",
+    "Success": false
+  },
+  "2026-01-10 11:54:18": {
+    "start_time": "2026-01-10 11:54:18",
+    "measurement_type": "LO interferometry",
+    "description": "Trying out measurement without letting the device sleep",
+    "Success": false
+  },
+  "2026-01-10 11:56:10": {
+    "start_time": "2026-01-10 11:56:10",
+    "measurement_type": "LO interferometry",
+    "description": "Trying out measurement without letting the device sleep",
+    "Success": false
   }
 }

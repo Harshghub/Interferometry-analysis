@@ -8,6 +8,7 @@ import argparse
 import time as t
 import datetime as dt
 import dwfpy as dwf
+from dwfpy.constants import AnalogInputCoupling, GlobalParameter, TriggerSource
 import numpy as np
 import json
 from pathlib import Path
@@ -21,12 +22,13 @@ measurement_duration = 0.0001  # Duration in seconds
 buffer_size = int(measurement_duration * f_sample) + 1  # Calculate buffer_size from duration
 
 # Scope channel settings
-CHANNEL_RANGE = 0.5  # Volts (±5V range)
-CHANNEL_RANGE_COSINE = 1  # Volts (±5V range)
+CHANNEL_RANGE = 5#0.5  # Volts (±5V range)
+CHANNEL_RANGE_COSINE = 5# Volts (±5V range)
+INPUT_IMPEDANCE = 1e6 # 1e6  # Input impedance in Ohms (1MΩ = high impedance, 50Ω = low impedance)
 
 # Analog output settings
-OUTPUT_FREQUENCY = 1e6# 1 kHz modulation frequency
-OUTPUT_AMPLITUDE = 1.0  # 1 Vpp (peak-to-peak)
+OUTPUT_FREQUENCY = 0.1e6# 1 kHz modulation frequency
+OUTPUT_AMPLITUDE = 1 # Peak amplitude in Volts (0.5 V peak = 1 Vpp peak-to-peak)
 
 # Results directory
 RESULTS_DIR = Path("results")
@@ -46,15 +48,32 @@ def main() -> None:
     data_prefix = "full_swing"
 
     with dwf.Device() as device:
+        # Configure clock to be trigger 1 output
+        # Set clock mode to output (1 = output, 0 = internal, 2 = input, 3 = IO)
+        device.set_parameter(GlobalParameter.CLOCK_MODE, 1)
+        # Set trigger pin 1 to output the clock
+        device.set_trigger(1, TriggerSource.CLOCK)
+        print("Clock configured to output on trigger 1")
+        
         # Configure analog output channel 1: sine wave at 1 kHz with 1 Vpp
-        print(f"Configuring analog output channel 1: {OUTPUT_FREQUENCY/1e3:.1f} kHz sine wave, {OUTPUT_AMPLITUDE} Vpp")
-        device.analog_output['ch1'].setup('sine', frequency=OUTPUT_FREQUENCY, amplitude=OUTPUT_AMPLITUDE, start=True)
-        t.sleep(1)
+        print(f"Configuring analog output channel 1: {OUTPUT_FREQUENCY/1e3:.1f} kHz sine wave, {OUTPUT_AMPLITUDE * 2} Vpp (peak amplitude: {OUTPUT_AMPLITUDE} V)")
+        device.analog_output['ch1'].setup('sine', frequency=OUTPUT_FREQUENCY, amplitude=OUTPUT_AMPLITUDE, offset=0.0, symmetry=50, start=True, configure=True)
+        t.sleep(3)
         
         # Initialize scope
         scope = device.analog_input
-        scope[0].setup(range=CHANNEL_RANGE)
-        scope[1].setup(range=CHANNEL_RANGE)
+        scope[0].setup(range=CHANNEL_RANGE, offset=20.0)
+        scope[0].impedance = INPUT_IMPEDANCE 
+        scope[0].coupling = AnalogInputCoupling.DC   # Set input impedance (1MΩ or 50Ω)
+        scope[1].setup(range=CHANNEL_RANGE, offset=20.0)
+        scope[1].impedance = INPUT_IMPEDANCE 
+        scope[1].coupling = AnalogInputCoupling.DC # Set input impedance (1MΩ or 50Ω)
+        print("acquisition_mode_info",scope.acquisition_mode_info)
+        print("acquisition_mode",scope.acquisition_mode)
+        scope.acquisition_mode = dwf.AcquisitionMode.SINGLE1
+        print("attenuation",scope[0].attenuation)
+        print("attenuation",scope[1].attenuation)
+        print("scope",dir(scope[1]))
         
         # Get timestamp when measurement starts
         measurement_timestamp = t.strftime("%Y%m%d-%H%M%S")
@@ -66,8 +85,12 @@ def main() -> None:
         scope.single(sample_rate=f_sample, buffer_size=buffer_size, configure=True, start=True)
         
         # Get measurement data
+        scope.wait_for_status(dwf.Status.DONE, read_data=True)
+        for attr in dir(scope[1]):
+            print(attr, getattr(scope[0], attr), (getattr(scope[1], attr)))
         v_meas = scope[0].get_data()  # Voltage in V
         cosine_reference = scope[1].get_data()
+        print(max(cosine_reference))
         
         # Get trigger time information from device
         # Returns tuple: (sec_utc, tick, ticks_per_second)
