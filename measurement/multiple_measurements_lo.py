@@ -62,18 +62,9 @@ def main() -> None:
         
         # Initialize scope
         scope = device.analog_input
-        scope[0].setup(range=CHANNEL_RANGE, offset=20.0)
-        scope[0].impedance = INPUT_IMPEDANCE 
-        scope[0].coupling = AnalogInputCoupling.DC   # Set input impedance (1MΩ or 50Ω)
-        scope[1].setup(range=CHANNEL_RANGE, offset=20.0)
-        scope[1].impedance = INPUT_IMPEDANCE 
-        scope[1].coupling = AnalogInputCoupling.DC # Set input impedance (1MΩ or 50Ω)
-        print("acquisition_mode_info",scope.acquisition_mode_info)
-        print("acquisition_mode",scope.acquisition_mode)
-        scope.acquisition_mode = dwf.AcquisitionMode.SINGLE1
-        print("attenuation",scope[0].attenuation)
-        print("attenuation",scope[1].attenuation)
-        print("scope",dir(scope[1]))
+        scope[0].setup(range=CHANNEL_RANGE)
+        scope[1].setup(range=CHANNEL_RANGE)
+
         
         # Get timestamp when measurement starts
         for i in range(3):
