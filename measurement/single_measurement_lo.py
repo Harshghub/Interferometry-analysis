@@ -58,7 +58,7 @@ def main() -> None:
         # Configure analog output channel 1: sine wave at 1 kHz with 1 Vpp
         print(f"Configuring analog output channel 1: {OUTPUT_FREQUENCY/1e3:.1f} kHz sine wave, {OUTPUT_AMPLITUDE * 2} Vpp (peak amplitude: {OUTPUT_AMPLITUDE} V)")
         device.analog_output['ch1'].setup('sine', frequency=OUTPUT_FREQUENCY, amplitude=OUTPUT_AMPLITUDE, offset=0.0, symmetry=50, start=True, configure=True)
-        t.sleep(3)
+        t.sleep(1)
         
         # Initialize scope
         scope = device.analog_input
