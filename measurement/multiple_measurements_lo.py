@@ -5,6 +5,7 @@ Usage:
     python single_measurement_lo.py
 """
 import argparse
+from signal import set_wakeup_fd
 import time as t
 import datetime as dt
 import dwfpy as dwf
@@ -27,7 +28,7 @@ CHANNEL_RANGE_COSINE = 5# Volts (±5V range)
 INPUT_IMPEDANCE = 1e6 # 1e6  # Input impedance in Ohms (1MΩ = high impedance, 50Ω = low impedance)
 
 # Analog output settings
-OUTPUT_FREQUENCY = 0.1e6# 1 kHz modulation frequency
+OUTPUT_FREQUENCY = 0.1e6# 100 kHz modulation frequency
 OUTPUT_AMPLITUDE = 1 # Peak amplitude in Volts (0.5 V peak = 1 Vpp peak-to-peak)
 
 # Results directory
@@ -43,10 +44,34 @@ def get_date_directory() -> Path:
     date_dir.mkdir(parents=True, exist_ok=True)
     return date_dir
 
-def main() -> None:
-    # args = parse_args()
-    data_prefix = "full_swing"
 
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description="Run measurements until the specified end datetime.",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+        Examples:
+        # Using individual arguments:
+        python measurement_with_log.py --end "2025-12-11 15:30:00" --measurement_type interferometry --description "Test run"
+        
+        # Using JSON config file:
+        python measurement_with_log.py --config config.json
+                """
+    )
+    parser.add_argument(
+        "--time_duration_seconds",
+        type=float,
+        help="Time duration in seconds.",
+        required=True,
+    )
+    
+    args = parser.parse_args()
+
+    return args
+
+def main() -> None:
+    args = parse_args()
+    data_prefix = "full_swing"
     with dwf.Device() as device:
         # Configure clock to be trigger 1 output
         # Set clock mode to output (1 = output, 0 = internal, 2 = input, 3 = IO)
@@ -58,16 +83,23 @@ def main() -> None:
         # Configure analog output channel 1: sine wave at 1 kHz with 1 Vpp
         print(f"Configuring analog output channel 1: {OUTPUT_FREQUENCY/1e3:.1f} kHz sine wave, {OUTPUT_AMPLITUDE * 2} Vpp (peak amplitude: {OUTPUT_AMPLITUDE} V)")
         device.analog_output['ch1'].setup('sine', frequency=OUTPUT_FREQUENCY, amplitude=OUTPUT_AMPLITUDE, offset=0.0, symmetry=50, start=True, configure=True)
-        t.sleep(1)
+        # t.sleep(1)
         
         # Initialize scope
         scope = device.analog_input
         scope[0].setup(range=CHANNEL_RANGE)
         scope[1].setup(range=CHANNEL_RANGE)
 
+
+        t.sleep(3)
+
+        time_duration_seconds = args.time_duration_seconds
+        time_start = dt.datetime.now()
+        time_end = time_start + dt.timedelta(seconds=time_duration_seconds)
+
         
         # Get timestamp when measurement starts
-        for i in range(3):
+        while dt.datetime.now() <= time_end:
             measurement_timestamp = t.strftime("%Y%m%d-%H%M%S")
             
             print(f"Starting measurement at {t.strftime('%Y-%m-%d %H:%M:%S')}")
@@ -78,8 +110,8 @@ def main() -> None:
             
             # Get measurement data
             scope.wait_for_status(dwf.Status.DONE, read_data=True)
-            for attr in dir(scope[1]):
-                print(attr, getattr(scope[0], attr), (getattr(scope[1], attr)))
+            # for attr in dir(scope[1]):
+                # print(attr, getattr(scope[0], attr), (getattr(scope[1], attr)))
             v_meas = scope[0].get_data()  # Voltage in V
             cosine_reference = scope[1].get_data()
             
@@ -130,7 +162,7 @@ def main() -> None:
                 json.dump(data_to_save, f, indent=2)
             
             print(f"Data saved to: {filename}")
-            t.sleep(1)
+            t.sleep(0.1)
 
 if __name__ == "__main__":
     main()

@@ -266,5 +266,38 @@
     "measurement_type": "LO interferometry",
     "description": "Trying out measurement without letting the device sleep",
     "Success": false
+  },
+  "2026-02-03 14:00:58": {
+    "start_time": "2026-02-03 14:00:58",
+    "end_time": "2026-02-03 14:00:58",
+    "measurement_type": "LO interferometry",
+    "description": "Trying out measurement without letting the device sleep",
+    "total_captures": 0
+  },
+  "2026-02-03 14:01:10": {
+    "start_time": "2026-02-03 14:01:10",
+    "measurement_type": "LO interferometry",
+    "description": "Trying out measurement without letting the device sleep",
+    "Success": false
+  },
+  "2026-02-03 15:32:36": {
+    "start_time": "2026-02-03 15:32:36",
+    "end_time": "2026-02-03 15:52:47",
+    "measurement_type": "LO interferometry",
+    "description": "Trying out measurement without letting the device sleep",
+    "total_captures": 1
+  },
+  "2026-02-05 10:12:51": {
+    "start_time": "2026-02-05 10:12:51",
+    "measurement_type": "LO interferometry",
+    "description": "A one hour round of lo-type measurements",
+    "Success": false
+  },
+  "2026-02-05 10:14:00": {
+    "start_time": "2026-02-05 10:14:00",
+    "end_time": "2026-02-05 11:14:04",
+    "measurement_type": "LO interferometry",
+    "description": "A one hour round of lo-type measurements",
+    "total_captures": 1
   }
 }
