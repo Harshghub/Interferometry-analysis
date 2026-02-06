@@ -99,8 +99,11 @@ def main() -> None:
 
         
         # Get timestamp when measurement starts
+        i = 0
         while dt.datetime.now() <= time_end:
-            measurement_timestamp = t.strftime("%Y%m%d-%H%M%S")
+            i += 1
+            # measurement_timestamp = t.strftime("%Y%m%d-%H%M%S")
+            measurement_timestamp = dt.datetime.now().strftime("%Y%m%d-%H%M%S%f")
             
             print(f"Starting measurement at {t.strftime('%Y-%m-%d %H:%M:%S')}")
             print(f"Sample rate: {f_sample} Hz, Duration: {measurement_duration} s, Buffer size: {buffer_size}")
@@ -163,6 +166,7 @@ def main() -> None:
             
             print(f"Data saved to: {filename}")
             t.sleep(0.1)
+        print(f"Total measurements: {i}")
 
 if __name__ == "__main__":
     main()

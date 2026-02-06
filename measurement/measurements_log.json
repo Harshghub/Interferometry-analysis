@@ -299,5 +299,40 @@
     "measurement_type": "LO interferometry",
     "description": "A one hour round of lo-type measurements",
     "total_captures": 1
+  },
+  "2026-02-05 14:30:24": {
+    "start_time": "2026-02-05 14:30:24",
+    "end_time": "2026-02-05 14:30:38",
+    "measurement_type": "LO interferometry",
+    "description": "A one hour round of lo-type measurements",
+    "total_captures": 1
+  },
+  "2026-02-05 22:06:15": {
+    "start_time": "2026-02-05 22:06:15",
+    "end_time": "2026-02-05 22:06:29",
+    "measurement_type": "LO interferometry",
+    "description": "10 seconds of measurement with full resolution",
+    "total_captures": 1
+  },
+  "2026-02-05 22:12:16": {
+    "start_time": "2026-02-05 22:12:16",
+    "end_time": "2026-02-05 22:12:31",
+    "measurement_type": "LO interferometry",
+    "description": "10 seconds of measurement with full resolution",
+    "total_captures": 1
+  },
+  "2026-02-05 22:12:52": {
+    "start_time": "2026-02-05 22:12:52",
+    "end_time": "2026-02-05 22:13:06",
+    "measurement_type": "LO interferometry",
+    "description": "10 seconds of measurement with full resolution",
+    "total_captures": 1
+  },
+  "2026-02-05 22:14:39": {
+    "start_time": "2026-02-05 22:14:39",
+    "end_time": "2026-02-06 09:15:24",
+    "measurement_type": "LO interferometry",
+    "description": "Overnight measurement with LO type measurements",
+    "total_captures": 11
   }
 }
