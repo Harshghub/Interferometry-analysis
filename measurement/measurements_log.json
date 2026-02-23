@@ -334,5 +334,61 @@
     "measurement_type": "LO interferometry",
     "description": "Overnight measurement with LO type measurements",
     "total_captures": 11
+  },
+  "2026-02-19 23:31:24": {
+    "start_time": "2026-02-19 23:31:24",
+    "end_time": "2026-02-20 09:32:05",
+    "measurement_type": "LO interferometry",
+    "description": "First overnight measurement with new upgrades",
+    "total_captures": 10
+  },
+  "2026-02-21 19:03:04": {
+    "start_time": "2026-02-21 19:03:04",
+    "end_time": "2026-02-21 19:03:05",
+    "measurement_type": "LO interferometry",
+    "description": "High resolution data",
+    "total_captures": 1
+  },
+  "2026-02-21 19:03:26": {
+    "start_time": "2026-02-21 19:03:26",
+    "end_time": "2026-02-21 19:03:41",
+    "measurement_type": "LO interferometry",
+    "description": "High resolution data",
+    "total_captures": 1
+  },
+  "2026-02-21 19:10:36": {
+    "start_time": "2026-02-21 19:10:36",
+    "end_time": "2026-02-21 19:10:50",
+    "measurement_type": "LO interferometry",
+    "description": "High resolution data",
+    "total_captures": 1
+  },
+  "2026-02-23 15:01:53": {
+    "start_time": "2026-02-23 15:01:53",
+    "end_time": "2026-02-23 15:02:07",
+    "measurement_type": "LO interferometry",
+    "description": "Testing the clock signal",
+    "total_captures": 1
+  },
+  "2026-02-23 15:05:33": {
+    "start_time": "2026-02-23 15:05:33",
+    "end_time": "2026-02-23 15:05:48",
+    "measurement_type": "LO interferometry",
+    "description": "Testing the clock signal",
+    "total_captures": 1
+  },
+  "2026-02-23 15:15:40": {
+    "start_time": "2026-02-23 15:15:40",
+    "end_time": "2026-02-23 15:15:54",
+    "measurement_type": "LO interferometry",
+    "description": "Testing the clock signal",
+    "total_captures": 1
+  },
+  "2026-02-23 15:18:04": {
+    "start_time": "2026-02-23 15:18:04",
+    "end_time": "2026-02-23 15:18:18",
+    "measurement_type": "LO interferometry",
+    "description": "Testing the clock signal",
+    "total_captures": 1
   }
 }
