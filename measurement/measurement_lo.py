@@ -121,10 +121,10 @@ def main() -> None:
     capture_idx = 0
     temp = True
     while dt.datetime.now() <= end_dt and temp:
-        temp = False
+        # temp = False
         # Timestamp for filenames and logs
         print(f"[{capture_idx}] Capture {capture_idx} starting")
-        ans = subprocess.call([r"/home/tiqi/src/Interferometry-analysis/.venv/bin/python",r"/home/tiqi/src/Interferometry-analysis/measurement/multiple_measurements_lo.py","--time_duration_seconds",f"{float(10)}"])
+        ans = subprocess.call([r"/home/tiqi/src/Interferometry-analysis/.venv/bin/python",r"/home/tiqi/src/Interferometry-analysis/measurement/multiple_measurements_lo.py","--time_duration_seconds",f"{float(60*60)}"])
         if ans == 0:
             print("full_swing measurement command executed.")
         else:

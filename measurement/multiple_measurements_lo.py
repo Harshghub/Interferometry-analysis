@@ -165,7 +165,7 @@ def main() -> None:
                 json.dump(data_to_save, f, indent=2)
             
             print(f"Data saved to: {filename}")
-            # t.sleep(0.1)
+            t.sleep(0.1)
         print(f"Total measurements: {i}")
 
 if __name__ == "__main__":
