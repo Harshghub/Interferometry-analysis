@@ -6,4 +6,5 @@ results/
 *.png
 *.jpg
 *.jpeg
+*.npy
 poetry.lock
